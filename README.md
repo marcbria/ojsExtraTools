@@ -1,61 +1,55 @@
 # ojsExtraTools
 Some bashscripts helpers created to upgrade and maintain OJS
 
-Estas herramientas se han desarrollado durante el proceso de actualización o mantenimiento de OJS.
-Aunque fueron creadas para uso interno, se han generalizado para que puedan usarse en contextos más genéricos.
+These tools have been developed during the process of updating or maintaining OJS.
+Although they were created for internal use, they have been generalised so that they can be used in more generic contexts.
 
-## Scripts incluidos
+## Scripts included
 
-- mergeUserList.sh: Partiendo de un fichero externo que incluye una lista de usernames de usuarios spammers, el script recorre dicha lista y hace un merge contra el usuario de su elección. Útil con revistas que han sufrido algún ataque i demasiados usuarios spam como para gestionarlos manualmente. Se asume que ojs està instalado en /var/www/html, pero se puede canviar ese path si se desea.
+- **mergeUserList**: Starting from an external file that includes a list of usernames of known spam or fake users, the script goes through that list and merges against the user of your choice. Useful for journals that have suffered an attack and too many spam users to manage manually. It assumes that ojs is installed in /var/www/html, but you can change that path if you wish.
 
-- dockgradeMe: el script aprovecha la potencia de los contenedores para automatizar la actualización de una instancia de OJS. Partiendo de una instalación dockerizada, la aplicación carga la BD, los ficheros públicos y privados y realiza distintos upgrades siguiendo el path de actualización indicado. Se incorporan múltiples pausas en la ejecución para confirmar que el proceso se ha realizado correctamente en los pasos intermedios. Se asume asume que se ha dockerizado docker siguiendo la estructura de directorios de [easy-ojs](https://github.com/pkp/docker-ojs)).
+- **dockgradeMe**: the script takes advantage of the power of containers to automate the upgrade of an OJS instance. Starting from a dockerised installation, the application loads the DB, public and private files and performs different upgrades following the indicated upgrade path. Multiple pauses are incorporated in the execution to confirm that the process has been carried out correctly in the intermediate steps. It is assumed that docker has been dockerised following the directory structure of [easy-ojs](https://github.com/pkp/docker-ojs)).
 
-## Forma de uso
+
+## Usage
 
 ### MergeUserList
 
-0. Crear un usuario "spamuser" (rol Lector) que va a ser receptor del "merge" de todos los usuarios spam.
-1. Visitar el directorio raiz de tu instalación ojs.
+0. Create a ‘spamuser’ (Reader role) that is going to be the recipient of the ‘merge’ of all spam users.
+1. Visit the root directory of your ojs installation.
 2. wget https://github.com/marcbria/ojsExtraTools/raw/refs/heads/main/mergeUsersList.sh && chmod +x mergeUsersList.sh
-3. Crear un archivo con todos los usuarios que desea hacer "merge" (pej. spammerList.txt).
-4. Ejecutar el script con: `./mergeUsersList.sh spamuser spammerList.txt`
+3. Create a file with all the users you want to merge (e.g. spammerList.txt).
+4. Run the script with: `./mergeUsersList.sh spamuser spammerList.txt`.
+
 
 ### DockgradeMe
-
 
 1. **Clone easyOJS**  
    ```bash
    git clone https://github.com/marcbria/easyOJS.git
    ```
-
 2. **Prepare the volumes**
 Copy the following items into the corresponding subdirectories inside volumes/:
 - Database dump file (dump.sql) into volumes/dump (sometimes dbimport)
 - public/ directory into volumes/public/
 - private/ (also known as "files") directory into volumes/private
-
 3. **Download the update script**
 In the directory where your docker-compose.yml is located, download the script:
    ```bash
     wget https://raw.githubusercontent.com/marcbria/ojsExtraTools/main/dockgradeMe.sh`
    ```
-
 4. **Edit the script according to your needs**
 Modify dockgradeMe.sh to adjust:
 - The upgrade path
 - The path to the config.inc.php file
 - ...
-
 5. **Give execution permissions and run the script**
-
    ```bash 
    chmod +x dockgradeMe.sh
    ./dockgradeMe.sh
    ```
-
 6. **Answer the script's questions**
 Provide the requested information during the interactive execution of the script.
-
 7. **Test the installation**
 Access the updated OJS instance at: http://localhost:8080
 And verify that the migration was successful.
