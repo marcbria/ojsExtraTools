@@ -18,7 +18,7 @@ Although they were created for internal use, they have been generalised so that 
 0. Create a ‘spamuser’ (Reader role) that is going to be the recipient of the ‘merge’ of all spam users.
 1. Visit the root directory of your ojs installation.
 2. wget https://github.com/marcbria/ojsExtraTools/raw/refs/heads/main/mergeUsersList.sh && chmod +x mergeUsersList.sh
-3. Create a file with all the users you want to merge (e.g. spammerList.txt).
+3. Create a file with all the usernames you want to merge (e.g. spammerList.txt). One username each line.
 4. Run the script with: `./mergeUsersList.sh spamuser spammerList.txt`.
 
 
