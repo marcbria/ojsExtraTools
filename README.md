@@ -8,7 +8,7 @@ Although they were created for internal use, they have been generalised so that 
 
 - **mergeUserList**: Starting from an external file that includes a list of usernames of known spam or fake users, the script goes through that list and merges against the user of your choice. Useful for journals that have suffered an attack and too many spam users to manage manually. It assumes that ojs is installed in /var/www/html, but you can change that path if you wish.
 
-- **dockgradeMe**: the script takes advantage of the power of containers to automate the upgrade of an OJS instance. Starting from a dockerised installation, the application loads the DB, public and private files and performs different upgrades following the indicated upgrade path. Multiple pauses are incorporated in the execution to confirm that the process has been carried out correctly in the intermediate steps. It is assumed that docker has been dockerised following the directory structure of [easy-ojs](https://github.com/pkp/docker-ojs)).
+- **dockgradeMe**: the script takes advantage of the power of containers to automate the upgrade of an OJS instance. Starting from a dockerised installation, the application loads the DB, public and private files and performs different upgrades following the indicated upgrade path. Multiple pauses are incorporated in the execution to confirm that the process has been carried out correctly in the intermediate steps. It is assumed that docker has been dockerised following the directory structure of [easy-ojs](https://github.com/pkp/containers/blob/main/docs/easyOJS.md)).
 
 
 ## Usage
@@ -24,13 +24,13 @@ Although they were created for internal use, they have been generalised so that 
 
 ### DockgradeMe
 
-1. **Clone easyOJS**  
+1. **Clone containers repo**  
    ```bash
-   git clone https://github.com/marcbria/easyOJS.git
+   git clone https://github.com/pkp/containers.git
    ```
 2. **Prepare the volumes**
 Copy the following items into the corresponding subdirectories inside volumes/:
-- Database dump file (dump.sql) into volumes/dump (sometimes dbimport)
+- Database dump file (dump.sql) into volumes/db-import (sometimes dump or migration)
 - public/ directory into volumes/public/
 - private/ (also known as "files") directory into volumes/private
 3. **Download the update script**
