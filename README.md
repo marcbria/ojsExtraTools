@@ -21,6 +21,7 @@ Although they were created for internal use, they have been generalised so that 
 3. Create a file with all the usernames you want to merge (e.g. spammerList.txt). One username each line.
 4. Run the script with: `./mergeUsersList.sh spamuser spammerList.txt`.
 
+**Note:** Alternatively, you can create a list of users with their user ID, using the syntax “id=999” instead of the username.
 
 ### DockgradeMe
 
