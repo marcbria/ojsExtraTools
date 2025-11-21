@@ -31,9 +31,11 @@ Although they were created for internal use, they have been generalised so that 
    ```
 2. **Prepare the volumes**
 Copy the following items into the corresponding subdirectories inside volumes/:
-- Database dump file (dump.sql) into volumes/db-import (sometimes dump or migration)
-- public/ directory into volumes/public/
-- private/ (also known as "files") directory into volumes/private
+   ```
+   - Database dump file (dump.sql) into volumes/db-import (sometimes called "dump" or "migration")
+   - public/ directory into volumes/public/
+   - private/ (also known as "files") directory into volumes/private
+   ```
 3. **Download the update script**
 In the directory where your docker-compose.yml is located, download the script:
    ```bash
